@@ -1,5 +1,11 @@
 const path = require('path')
+
+function resolve (dir) {
+  return path.resolve(__dirname, dir)
+}
+
 module.exports = {
+  productionSourceMap: false,
   publicPath: './',
   pages: {
     index: {
@@ -12,9 +18,24 @@ module.exports = {
     extract: false
   },
   chainWebpack: config => {
+    config.resolve.alias
+      .set('@', resolve('examples'))
+    config.module
+      .rule('md')
+      .test(/\.md/)
+      .use('vue-loader')
+      .loader('vue-loader')
+      .end()
+      .use('vue-markdown-loader')
+      .loader('vue-markdown-loader/lib/markdown-compiler')
+      .options({
+        raw: true
+      })
     config.module
       .rule('js')
-      .include.add(path.resolve(__dirname, 'packages')).end()
+      .include
+      .add('/packages')
+      .end()
       .use('babel')
       .loader('babel-loader')
       .tap(options => {

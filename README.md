@@ -1,4 +1,4 @@
-# alex-ui
+# a-doms
 
 ## Project setup
 ```
