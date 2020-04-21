@@ -1,6 +1,6 @@
 {
   "name": "a-doms",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "private": false,
   "description": "A Component Library for Vue.js.",
   "main": "lib/a-doms.umd.min.js",
