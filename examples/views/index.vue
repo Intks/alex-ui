@@ -2,15 +2,15 @@
   <div class="index">
     <img src="../assets/icon/logo.svg"
          alt="">
-    <h1>Alex UI</h1>
+    <h1>aDoms</h1>
     <span>A Component Library for Vue.js.</span>
     <div class="index__btn-wrapper">
-      <alex-button type="secondary"
-                   @click="startUse"
-                   round>開始使用</alex-button>
-      <alex-button type="secondary"
-                   @click="directToGitHub"
-                   round>GitHub</alex-button>
+      <adoms-button type="secondary"
+                    @click="startUse"
+                    round>開始使用</adoms-button>
+      <adoms-button type="secondary"
+                    @click="directToGitHub"
+                    round>GitHub</adoms-button>
     </div>
   </div>
 </template>
@@ -81,7 +81,7 @@ export default {
 
   .index__btn-wrapper {
     z-index: 999;
-    .alex-button {
+    .adoms-button {
       &:not(:last-child) {
         margin-right: 24px;
       }

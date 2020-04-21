@@ -1,11 +1,11 @@
 <template>
-  <button class="alex-button"
+  <button class="adoms-button"
           :disabled="disabled"
           @click="handleClick"
-          :class="[`alex-button__${type}`, {
-            'alex-button__is-round': round,
-            'alex-button__is-circle': circle,
-            'alex-button__is-disabled': disabled
+          :class="[`adoms-button__${type}`, {
+            'adoms-button__is-round': round,
+            'adoms-button__is-circle': circle,
+            'adoms-button__is-disabled': disabled
           }]">
     <span>
       <slot></slot>
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'AlexButton',
+  name: 'AdomsButton',
   props: {
     type: {
       type: String,
@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.alex-button {
+.adoms-button {
   display: inline-block;
   line-height: 1;
   white-space: nowrap;
@@ -61,7 +61,7 @@ export default {
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-  padding: 8px 20px;
+  padding: 12px 20px;
   font-size: 14px;
   border-radius: 4px;
   &:hover,

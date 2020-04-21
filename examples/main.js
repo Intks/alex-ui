@@ -1,13 +1,16 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
-
-import AlexUI from '../packages/index'
 import './assets/scss/main.scss'
+
+import aDomsUI from '../packages/index'
+
+import DemoBlock from './components/demo-block.vue'
+Vue.component('demo-block', DemoBlock)
+
 Vue.config.productionTip = false
 
-Vue.use(AlexUI)
-
+Vue.use(aDomsUI)
 new Vue({
   render: h => h(App),
   router

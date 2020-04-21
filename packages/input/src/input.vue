@@ -1,128 +1,143 @@
 <template>
   <div :class="[
-    type === 'textarea' ? 'alex-textarea' : 'alex-input'
-  ]"
-       @mouseenter="hovering = true"
-       @mouseleave="hovering = false">
-
+    type === 'textarea' ? 'el-textarea' : 'adoms-input',
+    inputSize ? 'adoms-input--' + inputSize : ''
+    ]">
     <template v-if="type !== 'textarea'">
-      <!-- 前置内容 -->
-      <span class="alex-input__prefix"
+      <div class="adoms-input__prepend"
+           v-if="$slots.prepend">
+        <slot name="prepend"></slot>
+      </div>
+
+      <input class="adoms-input__inner"
+             v-bind="$attrs"
+             :type="type"
+             :disabled="disabled"
+             :readonly="readonly"
+             :autocomplete="autoComplete"
+             :tabindex="tabindex"
+             @compositionstart="handleCompositionStart"
+             @compositionend="handleCompositionEnd"
+             @input="handleInput"
+             @focus="handleFocus"
+             @blur="handleBlur"
+             @change="handleChange"
+             ref="input">
+
+      <span class="adoms-input__prefix"
             v-if="$slots.prefix">
         <slot name="prefix"></slot>
       </span>
-      <input type="text"
-             class="alex-input__inner"
-             :class="{'alex-input__inner-prefix': $slots.prefix, 'alex-input__inner-editable': !disabled, 'alex-input__inner-disabled': disabled}"
-             :disabled="disabled"
-             :readonly="readonly"
-             :value="value"
-             @input="handleInput"
-             @change="handleChange"
-             @focus="handleFocus"
-             @blur="handleBlur">
 
+      <span class="admos-input__suffix"
+            v-if="$slots.suffix">
+        <slot name="suffix"></slot>
+      </span>
+
+      <div class="adoms-input__append"
+           v-if="$slots.append">
+        <slot name="append"></slot>
+      </div>
     </template>
 
-    <template v-else>
-      <textarea class="alex-textarea__inner"
-                :class="{'alex-textarea__inner-editable': !disabled, 'alex-textarea__inner-disabled': disabled}"
-                :disabled="disabled"
-                :readonly="readonly"
-                :value="value"
-                @input="handleInput"
-                @change="handleChange"
-                @focus="handleFocus"
-                @blur="handleBlur">
-      </textarea>
-    </template>
+    <textarea v-else
+              :tabindex="tabindex"
+              class="adoms-textarea__inner"
+              @compositionstart="handleCompositionStart"
+              @compositionupdate="handleCompositionUpdate"
+              @compositionend="handleCompositionEnd"
+              @input="handleInput"
+              ref="textarea"
+              v-bind="$attrs"
+              :disabled="disabled"
+              :readonly="readonly"
+              :autocomplete="autoComplete"
+              :style="textareaStyle"
+              @focus="handleFocus"
+              @blur="handleBlur"
+              @change="handleChange"
+              :aria-label="label"></textarea>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AlexInput',
+  name: 'AdomsInput',
   props: {
+    value: [String, Number],
     type: {
       type: String,
-      default: 'input'
+      required: true
     },
-    value: [String, Number],
+    tabindex: String,
     disabled: Boolean,
-    readonly: Boolean
+    readonly: Boolean,
+    autoComplete: Boolean
   },
   data () {
     return {
-      hovering: false
+      isComposing: false
+    }
+  },
+  computed: {
+    nativeInputValue () {
+      return this.value === null || this.value === undefined ? '' : String(this.value)
     }
   },
   methods: {
-    handleInput (e) {
-      this.$emit('input', e.target.value)
+    handleCompositionStart () {
+      // 正在輸入
+      this.isComposing = true
     },
-    handleChange (e) {
-      this.$emit('change', e.target.value)
+    handleCompositionEnd (event) {
+      // 如果輸入結束並選擇了字詞，就觸發 input 事件
+      if (this.isComposing) {
+        this.isComposing = false
+        this.handleInput(event)
+      }
     },
-    handleFocus (e) {
-      this.focused = true
-      this.$emit('focus', e)
+    handleInput () {
+      // 如果正在輸入就不觸發 input 事件
+      if (this.isComposing) return
+      // 沒懂這個 nativeInputValue 是啥意思
+      if (event.target.value === this.nativeInputValue) return
+      // 通知父組件觸發 input 方法
+      this.$emit('input', event.target.value)
+
+      this.$nextTick(this.setNativeInputValue)
     },
-    handleBlur (e) {
-      this.focused = false
-      this.$emit('focus', e)
+    handleFocus () {
+
+    },
+    handleBlur () {
+
+    },
+    handleChange () {
+
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.alex-input,
-.alex-textarea {
-  position: relative;
-
-  &__prefix {
-    position: absolute;
-    top: 50%;
-    left: 8px;
-    transform: translateY(-50%);
-    font-size: 12px;
-  }
+.adoms-input {
   &__inner {
-    border: 1px solid #eee;
+    padding: 8px 16px;
     border-radius: 8px;
-    font-size: 14px;
+    border: 1px solid #eee;
     outline: none;
-    &-editable {
-      &:hover,
-      &:focus {
-        color: #222;
-        border-color: #409eff;
-        background-color: #fff;
-      }
-
-      &:active {
-        color: #222;
-        border-color: #409eff;
-        outline: none;
-      }
-    }
-    &-disabled {
+    &:disabled {
       cursor: not-allowed;
-      background-color: #eee;
-      resize: none;
+      background: #eee;
     }
   }
 }
-
-.alex-input {
+.adoms-textarea {
   &__inner {
-    padding: 12px 24px;
-  }
-}
-
-.alex-textarea {
-  &__inner {
-    padding: 8px 12px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    outline: none;
   }
 }
 </style>

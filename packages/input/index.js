@@ -1,7 +1,7 @@
-import AlexInput from './src/input.vue'
+import adomsInput from './src/input.vue'
 
-AlexInput.install = function (Vue) {
-  Vue.component(AlexInput.name, AlexInput)
+adomsInput.install = function (Vue) {
+  Vue.component(adomsInput.name, adomsInput)
 }
 
-export default AlexInput
+export default adomsInput
