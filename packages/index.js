@@ -1,9 +1,15 @@
 import adomsButton from './button'
 import adomsInput from './input'
+import adomsGraphLine from './graph-line'
+import adomsGraphBar from './graph-bar'
+import adomsGraphPie from './graph-pie'
 
 const components = [
   adomsButton,
-  adomsInput
+  adomsInput,
+  adomsGraphLine,
+  adomsGraphBar,
+  adomsGraphPie
 ]
 
 // 定義 install 方法，接收 Vue 作為參數。如果使用 use 註冊插件，則所有的組件都將被註冊
@@ -22,5 +28,8 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   install,
   adomsButton,
-  adomsInput
+  adomsInput,
+  adomsGraphLine,
+  adomsGraphBar,
+  adomsGraphPie
 }

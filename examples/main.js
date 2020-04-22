@@ -5,7 +5,7 @@ import './assets/scss/main.scss'
 
 import aDomsUI from '../packages/index'
 
-import DemoBlock from './components/demo-block.vue'
+import DemoBlock from './components/demoBlock.vue'
 Vue.component('demo-block', DemoBlock)
 
 Vue.config.productionTip = false

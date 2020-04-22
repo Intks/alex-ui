@@ -5,7 +5,7 @@
         <img src="../assets/icon/logo.svg"
              alt="">
       </router-link>
-      <router-link :to="{name: 'Document'}">Document</router-link>
+      <router-link :to="'/Guide'">Guide</router-link>
     </div>
   </header>
 </template>

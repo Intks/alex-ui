@@ -1,28 +1,50 @@
 {
   "開發指南": [{
+      "name": "index",
+      "path": "/",
+      "type": "pages",
+      "desc": "首頁"
+    },
+    {
       "name": "guide",
       "path": "/guide",
       "desc": "介绍"
-    },
-    {
-      "name": "index",
-      "path": "/",
-      "type": "pages"
     }
   ],
   "组件": [{
-    "desc": "基礎組件",
-    "path": "/component",
-    "items": [{
-        "desc": "Button",
-        "name": "button",
-        "path": "/button"
-      },
-      {
-        "desc": "Input",
-        "name": "input",
-        "path": "/input"
-      }
-    ]
-  }]
+      "desc": "基礎組件",
+      "path": "/component",
+      "items": [{
+          "desc": "Button",
+          "name": "button",
+          "path": "/button"
+        },
+        {
+          "desc": "Input",
+          "name": "input",
+          "path": "/input"
+        }
+      ]
+    },
+    {
+      "desc": "圖表組件",
+      "path": "/graph",
+      "items": [{
+          "desc": "Line",
+          "name": "line",
+          "path": "/line"
+        },
+        {
+          "desc": "Bar",
+          "name": "bar",
+          "path": "/bar"
+        },
+        {
+          "desc": "Pie",
+          "name": "pie",
+          "path": "/pie"
+        }
+      ]
+    }
+  ]
 }

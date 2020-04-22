@@ -67,6 +67,10 @@ export default {
       font-weight: normal;
       line-height: 1.5;
       cursor: pointer;
+      transition: 0.5s;
+      &:hover {
+        color: #42b983;
+      }
     }
     .side-nav-group {
       display: block;

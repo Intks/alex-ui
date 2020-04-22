@@ -1,7 +1,10 @@
 <template>
   <div :class="[
-    type === 'textarea' ? 'el-textarea' : 'adoms-input',
-    inputSize ? 'adoms-input--' + inputSize : ''
+    type === 'textarea' ? 'adoms-textarea' : 'adoms-input',
+    size ? 'adoms-input--' + size : '',
+    {
+      'adoms-input-group': $slots.prepend || $slots.append
+    }
     ]">
     <template v-if="type !== 'textarea'">
       <div class="adoms-input__prepend"
@@ -10,19 +13,18 @@
       </div>
 
       <input class="adoms-input__inner"
+             ref="input"
              v-bind="$attrs"
              :type="type"
              :disabled="disabled"
              :readonly="readonly"
-             :autocomplete="autoComplete"
              :tabindex="tabindex"
              @compositionstart="handleCompositionStart"
              @compositionend="handleCompositionEnd"
              @input="handleInput"
              @focus="handleFocus"
              @blur="handleBlur"
-             @change="handleChange"
-             ref="input">
+             @change="handleChange">
 
       <span class="adoms-input__prefix"
             v-if="$slots.prefix">
@@ -41,22 +43,20 @@
     </template>
 
     <textarea v-else
+              ref="textarea"
               :tabindex="tabindex"
               class="adoms-textarea__inner"
               @compositionstart="handleCompositionStart"
-              @compositionupdate="handleCompositionUpdate"
               @compositionend="handleCompositionEnd"
               @input="handleInput"
-              ref="textarea"
               v-bind="$attrs"
               :disabled="disabled"
               :readonly="readonly"
-              :autocomplete="autoComplete"
               :style="textareaStyle"
+              :aria-label="label"
               @focus="handleFocus"
               @blur="handleBlur"
-              @change="handleChange"
-              :aria-label="label"></textarea>
+              @change="handleChange"></textarea>
   </div>
 </template>
 
@@ -72,7 +72,9 @@ export default {
     tabindex: String,
     disabled: Boolean,
     readonly: Boolean,
-    autoComplete: Boolean
+    resize: String,
+    size: String,
+    label: String
   },
   data () {
     return {
@@ -81,7 +83,10 @@ export default {
   },
   computed: {
     nativeInputValue () {
-      return this.value === null || this.value === undefined ? '' : String(this.value)
+      return this.value === null || this.value === undefined ? null : String(this.value)
+    },
+    textareaStyle () {
+      return { ...{ resize: this.resize } }
     }
   },
   methods: {
@@ -121,9 +126,32 @@ export default {
 
 <style lang="scss" scoped>
 .adoms-input {
+  &-group {
+    display: flex;
+    .adoms-input__inner {
+      border-radius: 0;
+    }
+  }
+  &__prepend,
+  &__append {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #eee;
+  }
+
+  &__prepend {
+    border-radius: 2px 0px 0px 2px;
+  }
+
+  &__append {
+    border-radius: 0px 2px 2px 0px;
+  }
+
   &__inner {
     padding: 8px 16px;
-    border-radius: 8px;
+    border-radius: 4px;
     border: 1px solid #eee;
     outline: none;
     &:disabled {
