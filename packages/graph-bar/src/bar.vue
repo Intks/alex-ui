@@ -24,7 +24,7 @@ export default {
         return [
           {
             label: 'Data one',
-            backgroundColor: '#f87979',
+            backgroundColor: '#42b983',
             data: [12, 40, 20, 10]
           }
         ]

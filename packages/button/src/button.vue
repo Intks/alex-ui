@@ -77,6 +77,7 @@ export default {
     color: #fff;
     &:hover,
     &:focus {
+      box-shadow: 0 8px 25px -8px #3790ed;
       color: #fff;
       border-color: #3790ed;
       background-color: #3790ed;
@@ -90,6 +91,7 @@ export default {
     &:hover,
     &:focus {
       color: #fff;
+      box-shadow: 0 8px 25px -8px #292d3b;
       border-color: #292d3b;
       background-color: #292d3b;
     }
@@ -102,6 +104,7 @@ export default {
     &:hover,
     &:focus {
       color: #fff;
+      box-shadow: 0 8px 25px -8px #00b847;
       border-color: #00b847;
       background-color: #00b847;
     }
@@ -114,6 +117,7 @@ export default {
     &:hover,
     &:focus {
       color: #fff;
+      box-shadow: 0 8px 25px -8px #eaa108;
       border-color: #eaa108;
       background-color: #eaa108;
     }
@@ -126,8 +130,22 @@ export default {
     &:hover,
     &:focus {
       color: #fff;
+      box-shadow: 0 8px 25px -8px #b32420;
       border-color: #b32420;
       background-color: #b32420;
+    }
+  }
+
+  &__info {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #fff;
+    &:hover,
+    &:focus {
+      color: #fff;
+      box-shadow: 0 8px 25px -8px #ccc;
+      border-color: #ccc;
+      background-color: #ccc;
     }
   }
   // 圆角
@@ -147,6 +165,7 @@ export default {
     &:hover,
     &:focus {
       color: #9b9b9b;
+      box-shadow: none;
       border-color: #f5f4f4;
       background-color: #f5f4f4;
     }

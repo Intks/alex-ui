@@ -1,5 +1,7 @@
 import adomsButton from './button'
 import adomsInput from './input'
+import adomsLink from './link'
+import adomsUpload from './upload'
 import adomsGraphLine from './graph-line'
 import adomsGraphBar from './graph-bar'
 import adomsGraphPie from './graph-pie'
@@ -7,6 +9,8 @@ import adomsGraphPie from './graph-pie'
 const components = [
   adomsButton,
   adomsInput,
+  adomsLink,
+  adomsUpload,
   adomsGraphLine,
   adomsGraphBar,
   adomsGraphPie
@@ -29,6 +33,8 @@ export default {
   install,
   adomsButton,
   adomsInput,
+  adomsLink,
+  adomsUpload,
   adomsGraphLine,
   adomsGraphBar,
   adomsGraphPie

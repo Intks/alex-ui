@@ -45,7 +45,7 @@ export default {
             data: [133.3, 86.2, 52.2, 51.2, 50.2],
             backgroundColor: [
               '#FF6384',
-              '#63FF84',
+              '#42b983',
               '#84FF63',
               '#8463FF',
               '#6384FF'
@@ -56,7 +56,7 @@ export default {
     },
     title: {
       type: String,
-      default: '圖表'
+      default: '圖表表'
     },
     options: {
       type: Object,

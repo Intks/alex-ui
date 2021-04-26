@@ -15,6 +15,11 @@
       "desc": "基礎組件",
       "path": "/component",
       "items": [{
+          "desc": "Link",
+          "name": "link",
+          "path": "/link"
+        },
+        {
           "desc": "Button",
           "name": "button",
           "path": "/button"
@@ -23,6 +28,11 @@
           "desc": "Input",
           "name": "input",
           "path": "/input"
+        },
+        {
+          "desc": "Upload",
+          "name": "upload",
+          "path": "/upload"
         }
       ]
     },
